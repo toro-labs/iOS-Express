@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Car" representedClassName=".Car" syncable="YES" codeGenerationType="class">
+        <attribute name="model" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="year" optional="YES" attributeType="String"/>
+        <relationship name="rentRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RentModel" inverseName="rentedCar" inverseEntity="RentModel"/>
+    </entity>
+    <entity name="ClientModel" representedClassName=".ClientModel" syncable="YES" codeGenerationType="class">
+        <attribute name="cellphone" attributeType="String" defaultValueString=""/>
+        <attribute name="completeName" attributeType="String" defaultValueString="&quot;&quot;"/>
+        <attribute name="place" attributeType="String" defaultValueString="&quot;&quot;"/>
+        <relationship name="idDocument" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="IDDocument" inverseName="clientRelationship" inverseEntity="IDDocument"/>
+        <relationship name="rentRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RentModel" inverseName="client" inverseEntity="RentModel"/>
+    </entity>
+    <entity name="IDDocument" representedClassName=".IDDocument" syncable="YES" codeGenerationType="class">
+        <attribute name="idBackCard" optional="YES" attributeType="Binary"/>
+        <attribute name="idCard" optional="YES" attributeType="Binary"/>
+        <attribute name="licenseBackCard" optional="YES" attributeType="Binary"/>
+        <attribute name="licenseCard" optional="YES" attributeType="Binary"/>
+        <relationship name="clientRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClientModel" inverseName="idDocument" inverseEntity="ClientModel"/>
+    </entity>
+    <entity name="Payment" representedClassName=".Payment" syncable="YES" codeGenerationType="class">
+        <attribute name="money" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="rentRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RentModel" inverseName="payment" inverseEntity="RentModel"/>
+    </entity>
+    <entity name="RentModel" representedClassName=".RentModel" syncable="YES" codeGenerationType="class">
+        <attribute name="car" optional="YES" attributeType="String"/>
+        <attribute name="fromDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="reserved" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="toDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="client" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClientModel" inverseName="rentRelationship" inverseEntity="ClientModel"/>
+        <relationship name="payment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Payment" inverseName="rentRelationship" inverseEntity="Payment"/>
+        <relationship name="rentedCar" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Car" inverseName="rentRelationship" inverseEntity="Car"/>
+    </entity>
+    <elements>
+        <element name="Car" positionX="-63" positionY="-9" width="128" height="89"/>
+        <element name="ClientModel" positionX="236.2706298828125" positionY="164.2169799804688" width="128" height="104"/>
+        <element name="IDDocument" positionX="-36" positionY="45" width="128" height="104"/>
+        <element name="Payment" positionX="126" positionY="162" width="128" height="74"/>
+        <element name="RentModel" positionX="117" positionY="144" width="128" height="134"/>
+    </elements>
+</model>
