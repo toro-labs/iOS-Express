@@ -41,35 +41,26 @@ struct DateView: View {
 }
 
 struct DashBoardView: View {
-    // MARK: - Observable Properties
+    // MARK: - Properties
     
-    @Environment(\.availableCars) var cars
-    @FetchRequest(
-        entity: RentModel.entity(),
-        sortDescriptors: [],
-        predicate: NSPredicate(format: "fromDate > %@ && fromDate < %@", DateUtil.shared.startDay! as CVarArg, DateUtil.shared.endDay! as CVarArg)) var rents: FetchedResults<RentModel>
-    @State private var selectedCar = CarModel.honda2010
-    
-    // MARK: Properties
-    
-    private var filterRent: RentModel? {
-        return rents
-            .filter {
-                $0.car == selectedCar.rawValue
-            }
-            .first
-    }
-    
-    @State private var actualDate = Date()
     private var dateComponentes: [String] {
         return DateUtil.shared.getDateComponents(actualDate)
     }
+    
+    // MARK: Observable Properties
+    
+    @Environment(\.availableCars) var cars
+    @ObservedObject private var viewModel = DashboardViewModel()
+    @State private var selectedCar = CarModel.honda2010
+    @State private var actualDate = Date()
     
     // MARK: SwiftUI Container
     
     var body: some View {
         NavigationView {
             Form {
+                let client = viewModel.getClient(from: .init(model: selectedCar.rawValue, fromDate: DateUtil.shared.getStartDay(actualDate), toDate: DateUtil.shared.getEndDay(actualDate)))
+                
                 Section {
                     Picker(selection: $selectedCar, label: Text("Carro"), content: {
                         Text("Honda CRV 2000").tag(CarModel.honda2000)
@@ -81,24 +72,32 @@ struct DashBoardView: View {
                 
                 Section(header: Text("Hoy")) {
                     HStack {
+                        
                         DateView(date: dateComponentes)
                         
                         Divider()
                         
                         VStack(alignment: .leading) {
-                            if let filterRent = filterRent, let client = filterRent.client {
+                            if let client = client {
                                 Text(client.completeName ?? "")
                                 Text("Celular: \(client.cellphone ?? "")")
                             } else {
                                 Text("No hay cliente")
-                                
                             }
                         }
+                        .onTapGesture {
+                            if client != nil {
+                                viewModel.showPhoneAlert.toggle()
+                            }
+                        }
+                        .alert(isPresented: $viewModel.showPhoneAlert, content: {
+                            return Alert(title: Text("Llamada"), message: Text("Esta seguro que quiere llamar a \(client!.completeName!)"), primaryButton: .default(Text("Si"), action: { Phone.call(client!.cellphone!) }), secondaryButton: .cancel(Text("No")))
+                        })
                     }
                 }
                 .gesture(
                     DragGesture(minimumDistance: 0, coordinateSpace: .local)
-                        .onEnded() { value in
+                        .onEnded { value in
                             if value.translation.width < 0 {
                                 self.actualDate = self.actualDate.addingTimeInterval(24*60*60)
                             }
@@ -113,7 +112,7 @@ struct DashBoardView: View {
                     HStack {
                         Spacer()
                         
-                        if filterRent == nil {
+                        if client == nil {
                             Text("Disponible")
                                 .bold()
                                 .foregroundColor(.green)
@@ -132,7 +131,7 @@ struct DashBoardView: View {
                     }
                 }
                 
-                if filterRent != nil {
+                if client != nil {
                     Section(header: Text("Entrega de Vehículo")) {
                         HStack {
                             Spacer()

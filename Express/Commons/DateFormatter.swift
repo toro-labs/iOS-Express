@@ -12,15 +12,8 @@ final class DateUtil {
     // MARK: - Attributes
     
     private let calendar: Calendar
-    var endDay: Date? {
-        return self.calendar.date(bySettingHour: 23, minute: 59, second: 59, of: Date())
-    }
     private let formatter: DateFormatter
     static let shared = DateUtil()
-    var startDay: Date? {
-        return self.calendar.startOfDay(for: Date())
-    }
-    
     
     // MARK: Life Cycle
     
@@ -35,6 +28,14 @@ final class DateUtil {
     func getDateComponents(_ date: Date) -> [String] {
         self.formatter.dateFormat = "EEEE, d, MMMM"
         return self.formatter.string(from: date).split(separator: ",").map { String($0) }
+    }
+    
+    func getEndDay(_ date: Date) -> Date? {
+        return self.calendar.date(bySettingHour: 23, minute: 59, second: 59, of: date)
+    }
+    
+    func getStartDay(_ date: Date) -> Date? {
+        return self.calendar.startOfDay(for: date)
     }
     
     func getStringDate(_ date: Date) -> String {

@@ -21,6 +21,8 @@
 		F8A31945259D2CE300764AEB /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A31944259D2CE300764AEB /* Persistence.swift */; };
 		F8A31948259D2CE300764AEB /* Express.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F8A31946259D2CE300764AEB /* Express.xcdatamodeld */; };
 		F8A31953259D2DF600764AEB /* DashBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A31952259D2DF600764AEB /* DashBoardView.swift */; };
+		F8AB5F2C25CF351200B6EEC8 /* Phone.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AB5F2B25CF351200B6EEC8 /* Phone.swift */; };
+		F8AB5F2F25CF412D00B6EEC8 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AB5F2E25CF412D00B6EEC8 /* DashboardViewModel.swift */; };
 		F8D3BAF225BCFCC30000859D /* EnvironmentKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3BAF125BCFCC30000859D /* EnvironmentKey.swift */; };
 		F8D3BAF625BCFE980000859D /* CarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3BAF525BCFE980000859D /* CarModel.swift */; };
 		F8D6B22D25A7ED3500902460 /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D6B22C25A7ED3500902460 /* UIExtension.swift */; };
@@ -46,6 +48,8 @@
 		F8A31947259D2CE300764AEB /* Express.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Express.xcdatamodel; sourceTree = "<group>"; };
 		F8A31949259D2CE300764AEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8A31952259D2DF600764AEB /* DashBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardView.swift; sourceTree = "<group>"; };
+		F8AB5F2B25CF351200B6EEC8 /* Phone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phone.swift; sourceTree = "<group>"; };
+		F8AB5F2E25CF412D00B6EEC8 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		F8D3BAF125BCFCC30000859D /* EnvironmentKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentKey.swift; sourceTree = "<group>"; };
 		F8D3BAF525BCFE980000859D /* CarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarModel.swift; sourceTree = "<group>"; };
 		F8D6B22C25A7ED3500902460 /* UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
@@ -70,6 +74,7 @@
 			children = (
 				F8D3BAF525BCFE980000859D /* CarModel.swift */,
 				F857FE3525BCF2CD008233BF /* DateFormatter.swift */,
+				F8AB5F2B25CF351200B6EEC8 /* Phone.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -201,6 +206,7 @@
 			children = (
 				F8D6B23525A7EE2700902460 /* RentScheduleViewModel.swift */,
 				F8D6B23825A7F27100902460 /* DocumentViewModel.swift */,
+				F8AB5F2E25CF412D00B6EEC8 /* DashboardViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -285,12 +291,14 @@
 				F86CEDEA25A28A7700CEC55C /* ImagePicker.swift in Sources */,
 				F8D6B23925A7F27100902460 /* DocumentViewModel.swift in Sources */,
 				F86CEDE2259D4D8500CEC55C /* ScheduleView.swift in Sources */,
+				F8AB5F2F25CF412D00B6EEC8 /* DashboardViewModel.swift in Sources */,
 				F8A31953259D2DF600764AEB /* DashBoardView.swift in Sources */,
 				F858BDDD25BA692F00260765 /* CoreDataRepository.swift in Sources */,
 				F8A31948259D2CE300764AEB /* Express.xcdatamodeld in Sources */,
 				F8D3BAF625BCFE980000859D /* CarModel.swift in Sources */,
 				F8D6B23025A7ED6100902460 /* IDView.swift in Sources */,
 				F86CEDE525A1578C00CEC55C /* RentHistoryView.swift in Sources */,
+				F8AB5F2C25CF351200B6EEC8 /* Phone.swift in Sources */,
 				F8A3193C259D2CE100764AEB /* ExpressApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
