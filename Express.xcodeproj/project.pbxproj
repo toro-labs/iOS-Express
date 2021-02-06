@@ -26,7 +26,7 @@
 		F8D6B22D25A7ED3500902460 /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D6B22C25A7ED3500902460 /* UIExtension.swift */; };
 		F8D6B23025A7ED6100902460 /* IDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D6B22F25A7ED6100902460 /* IDView.swift */; };
 		F8D6B23625A7EE2700902460 /* RentScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D6B23525A7EE2700902460 /* RentScheduleViewModel.swift */; };
-		F8D6B23925A7F27100902460 /* IDDocumentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D6B23825A7F27100902460 /* IDDocumentViewModel.swift */; };
+		F8D6B23925A7F27100902460 /* DocumentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D6B23825A7F27100902460 /* DocumentViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,7 +51,7 @@
 		F8D6B22C25A7ED3500902460 /* UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
 		F8D6B22F25A7ED6100902460 /* IDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDView.swift; sourceTree = "<group>"; };
 		F8D6B23525A7EE2700902460 /* RentScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentScheduleViewModel.swift; sourceTree = "<group>"; };
-		F8D6B23825A7F27100902460 /* IDDocumentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDDocumentViewModel.swift; sourceTree = "<group>"; };
+		F8D6B23825A7F27100902460 /* DocumentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,7 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				F8D6B23525A7EE2700902460 /* RentScheduleViewModel.swift */,
-				F8D6B23825A7F27100902460 /* IDDocumentViewModel.swift */,
+				F8D6B23825A7F27100902460 /* DocumentViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -283,7 +283,7 @@
 				F8D6B22D25A7ED3500902460 /* UIExtension.swift in Sources */,
 				F858BDDA25BA680C00260765 /* PersistanceRepository.swift in Sources */,
 				F86CEDEA25A28A7700CEC55C /* ImagePicker.swift in Sources */,
-				F8D6B23925A7F27100902460 /* IDDocumentViewModel.swift in Sources */,
+				F8D6B23925A7F27100902460 /* DocumentViewModel.swift in Sources */,
 				F86CEDE2259D4D8500CEC55C /* ScheduleView.swift in Sources */,
 				F8A31953259D2DF600764AEB /* DashBoardView.swift in Sources */,
 				F858BDDD25BA692F00260765 /* CoreDataRepository.swift in Sources */,
@@ -422,7 +422,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Express/Preview Content\"";
-				DEVELOPMENT_TEAM = VGE426Z8LB;
+				DEVELOPMENT_TEAM = SHT3F8H6HH;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Express/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -430,7 +430,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kharypnoz.express;
+				PRODUCT_BUNDLE_IDENTIFIER = com.torolabs.express.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -446,7 +446,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Express/Preview Content\"";
-				DEVELOPMENT_TEAM = VGE426Z8LB;
+				DEVELOPMENT_TEAM = SHT3F8H6HH;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Express/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -454,7 +454,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kharypnoz.express;
+				PRODUCT_BUNDLE_IDENTIFIER = com.torolabs.express.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

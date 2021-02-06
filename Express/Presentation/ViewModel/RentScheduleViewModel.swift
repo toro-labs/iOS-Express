@@ -7,6 +7,7 @@
 
 import Combine
 import CoreData
+import CoreGraphics
 
 class RentScheduleViewModel: ObservableObject {
     // MARK: - Inner Types
@@ -16,6 +17,9 @@ class RentScheduleViewModel: ObservableObject {
         case dollars
     }
     
+    private var cancellables: Set<AnyCancellable> = []
+    private var paymentType: PaymentType
+    
     // MARK: Observable Attributes
     
     @Published var booked: Bool
@@ -24,22 +28,59 @@ class RentScheduleViewModel: ObservableObject {
     @Published var money: String
     @Published var name: String
     @Published var place: String
-    @Published var paymentType: PaymentType
+    @Published var paymentInDollar = false
     @Published var selectedCar: CarModel
     @Published var to: Date
+    
+    @Published var currency: String
+    @Published var buttonTitle: String
+    @Published var textFieldFrame: CGFloat
+    
     
     // MARK: Life Cycle
     
     init() {
         self.booked = false
+        self.buttonTitle = "Alquilar"
         self.cellphone = ""
+        self.currency = "₡"
         self.from = Date()
         self.money = ""
         self.name = ""
         self.place = ""
+        self.paymentInDollar = false
         self.paymentType = .colons
         self.selectedCar = .honda2010
+        self.textFieldFrame = 80
         self.to = Date()
+        
+        initObservables()
+    }
+    
+    func initObservables() {
+        $booked
+            .receive(on: RunLoop.main)
+            .map { $0 ? "Reservar" : "Alquilar" }
+            .assign(to: \.buttonTitle, on: self)
+            .store(in: &cancellables)
+        
+        $paymentInDollar
+            .receive(on: RunLoop.main)
+            .map { $0 ? "$" : "₡"}
+            .assign(to: \.currency, on: self)
+            .store(in: &cancellables)
+        
+        $paymentInDollar
+            .receive(on: RunLoop.main)
+            .map { $0 ? PaymentType.dollars : PaymentType.colons }
+            .assign(to: \.paymentType, on: self)
+            .store(in: &cancellables)
+        
+        $paymentInDollar
+            .receive(on: RunLoop.main)
+            .map { $0 ? 60 : 80}
+            .assign(to: \.textFieldFrame, on: self)
+            .store(in: &cancellables)
     }
     
     // MARK: Setup

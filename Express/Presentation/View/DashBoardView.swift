@@ -106,8 +106,6 @@ struct DashBoardView: View {
                             if value.translation.width > 0 {
                                 self.actualDate = self.actualDate.addingTimeInterval(-24*60*60)
                             }
-                            
-                            
                         }
                 )
                 

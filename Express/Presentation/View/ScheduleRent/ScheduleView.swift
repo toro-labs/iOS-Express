@@ -13,7 +13,6 @@ struct ScheduleView: View {
     @Environment(\.managedObjectContext) var moc
     @ObservedObject var docViewModel = IDDocumentViewModel()
     @ObservedObject var viewModel = RentScheduleViewModel()
-    @State var paymentInDollar = false
     
     // MARK: SwiftUI Container
     
@@ -44,13 +43,10 @@ struct ScheduleView: View {
                         Text("Reservación")
                     })
                     
-                    Toggle(isOn: $paymentInDollar, label: {
+                    Toggle(isOn: $viewModel.paymentInDollar, label: {
                         Image(systemName: "dollarsign.circle")
                         Text("Cobro en Dolares")
-                    }).onChange(of: paymentInDollar) { value in
-                        if value { viewModel.paymentType = .dollars }
-                        else { viewModel.paymentType = .colons }
-                    }
+                    })
                 }
                 
                 Section(header: Text("Pago")) {
@@ -59,10 +55,10 @@ struct ScheduleView: View {
                         
                         Spacer()
                         
-                        Text(paymentInDollar ? "$" : "₡")
+                        Text(viewModel.currency)
                         
                         TextField("", text: $viewModel.money)
-                            .frame(width: paymentInDollar ? 60 : 80, alignment: .trailing)
+                            .frame(width: viewModel.textFieldFrame, alignment: .trailing)
                     }
                     
                     if viewModel.booked {
@@ -71,10 +67,10 @@ struct ScheduleView: View {
                             
                             Spacer()
                             
-                            Text(paymentInDollar ? "$" : "₡")
+                            Text(viewModel.currency)
                             
                             TextField("", text: $viewModel.money)
-                                .frame(width: paymentInDollar ? 60 : 80, alignment: .trailing)
+                                .frame(width: viewModel.textFieldFrame, alignment: .trailing)
                         }
                     }
                 }
@@ -82,7 +78,7 @@ struct ScheduleView: View {
                 Section {
                     HStack {
                         Spacer()
-                        Button(viewModel.booked ? "Reservar" : "Alquilar", action: {
+                        Button(viewModel.buttonTitle, action: {
                             viewModel.rent(context: moc, idDocument: docViewModel.createIDDocument(context: moc))
                         })
                             .frame(alignment: .center)
