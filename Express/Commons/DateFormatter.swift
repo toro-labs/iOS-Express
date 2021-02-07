@@ -34,19 +34,19 @@ final class DateUtil {
         return self.calendar.date(bySettingHour: 23, minute: 59, second: 59, of: date)
     }
     
-    func getStartDay(_ date: Date) -> Date? {
-        return self.calendar.startOfDay(for: date)
-    }
-    
-    func getStringDate(_ date: Date) -> String {
-        return self.formatter.string(from: date)
-    }
-    
     func getNumberOfdays(_ fromDate: Date, _ toDate: Date) -> Int {
         if let firstDate = self.calendar.date(bySettingHour: 12, minute: 0, second: 0, of: fromDate), let lastDate = self.calendar.date(bySettingHour: 12, minute: 0, second: 0, of: toDate) {
             return self.calendar.dateComponents([.day], from: firstDate, to: lastDate).day!
         }
         
         return -1
+    }
+    
+    func getStartDay(_ date: Date) -> Date? {
+        return self.calendar.startOfDay(for: date)
+    }
+    
+    func getStringDate(_ date: Date) -> String {
+        return self.formatter.string(from: date)
     }
 }

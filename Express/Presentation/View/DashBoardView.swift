@@ -29,7 +29,6 @@ struct DashBoardView: View {
                 
                 Section(header: Text("Hoy")) {
                     HStack {
-                        
                         DateView(viewModel.actualDate)
                         
                         Divider()

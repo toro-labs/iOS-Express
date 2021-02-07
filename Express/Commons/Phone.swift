@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct Phone {
+    // MARK: - Setup
+
     static func call(_ number: String) {
         if let phoneNumber = URL(string: "tel://\(number)"), UIApplication.shared.canOpenURL(phoneNumber) {
             UIApplication.shared.open(phoneNumber, options: [:], completionHandler: nil)

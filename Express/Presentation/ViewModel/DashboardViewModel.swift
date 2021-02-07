@@ -15,24 +15,25 @@ struct ClientRequest {
 }
 
 class DashboardViewModel: ObservableObject {
-    
-    var dateComponentes: [String] {
-        return DateUtil.shared.getDateComponents(actualDate)
-    }
+    // MARK: - Attributes
     
     private var rent: RentModel?
     
     var client: ClientModel? {
-        return rent?.client
+        return self.rent?.client
     }
     
     private let respository: PersistanceRepository
     
-    @Published var actualDate: Date
-    @Published var showPhoneAlert: Bool
-    @Published var selectedCar: CarModel
+    // MARK: Observable Attributes
     
-    init(repository: PersistanceRepository) {
+    @Published var actualDate: Date
+    @Published var selectedCar: CarModel
+    @Published var showPhoneAlert: Bool
+    
+    // MARK: Life Cycle
+    
+    init(repository: PersistanceRepository) { // Aquí sería bueno pensar en un DI Framework
         self.actualDate = Date()
         self.respository = repository
         self.selectedCar = CarModel.honda2010
@@ -43,8 +44,10 @@ class DashboardViewModel: ObservableObject {
         self.init(repository: CoreDataRepository(context: PersistenceController.shared.container.viewContext))
     }
     
+    // MARK: Setup
+    
     func getClient() {
-        let request = ClientRequest(model: self.selectedCar.rawValue, fromDate: DateUtil.shared.getStartDay(actualDate), toDate: DateUtil.shared.getEndDay(actualDate))
+        let request = ClientRequest(model: self.selectedCar.rawValue, fromDate: DateUtil.shared.getStartDay(self.actualDate), toDate: DateUtil.shared.getEndDay(self.actualDate))
         do {
             let rent = try self.respository.get(type: RentModel.self, fetchArgs: request)
             self.rent = rent.first

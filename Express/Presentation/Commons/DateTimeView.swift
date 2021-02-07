@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct DateTimeView: View {
+    // MARK: - Properties
+    
     let date: [String]
     
     private var weekName: String {
@@ -35,6 +37,8 @@ struct DateTimeView: View {
         return hour > 12 ? "PM" : "AM"
     }
     
+    // MARK: SwiftUI Container
+    
     var body: some View {
         VStack(alignment: .center) {
             Text(weekName)
@@ -61,6 +65,8 @@ struct DateTimeView: View {
             }
         }
     }
+    
+    // MARK: Initializer
     
     init(_ date: Date) {
         self.date = DateUtil.shared.getDateComponents(date, formatter: "EEEE,d,MMMM,h,mm")
