@@ -7,62 +7,19 @@
 
 import SwiftUI
 
-struct DateView: View {
-    // MARK: - Properties
-    
-    let date: [String]
-    
-    private var weekName: String {
-        return date[0]
-    }
-    
-    private var day: String {
-        return date[1]
-    }
-    
-    private var month: String {
-        return date[2]
-    }
-    
-    // MARK: SwiftUI Container
-    
-    var body: some View {
-        VStack {
-            Text(weekName)
-                .font(.callout)
-                .foregroundColor(.red)
-            Text(day)
-                .font(.title)
-                .bold()
-            Text(month)
-                .font(.caption)
-        }
-    }
-}
-
 struct DashBoardView: View {
-    // MARK: - Properties
-    
-    private var dateComponentes: [String] {
-        return DateUtil.shared.getDateComponents(actualDate)
-    }
-    
-    // MARK: Observable Properties
+    // MARK: - Observable Properties
     
     @Environment(\.availableCars) var cars
     @ObservedObject private var viewModel = DashboardViewModel()
-    @State private var selectedCar = CarModel.honda2010
-    @State private var actualDate = Date()
     
     // MARK: SwiftUI Container
     
     var body: some View {
         NavigationView {
             Form {
-                let client = viewModel.getClient(from: .init(model: selectedCar.rawValue, fromDate: DateUtil.shared.getStartDay(actualDate), toDate: DateUtil.shared.getEndDay(actualDate)))
-                
                 Section {
-                    Picker(selection: $selectedCar, label: Text("Carro"), content: {
+                    Picker(selection: $viewModel.selectedCar, label: Text("Carro"), content: {
                         Text("Honda CRV 2000").tag(CarModel.honda2000)
                         Text("Honda CRV 2004").tag(CarModel.honda2004)
                         Text("Honda CRV 2010").tag(CarModel.honda2010)
@@ -73,12 +30,12 @@ struct DashBoardView: View {
                 Section(header: Text("Hoy")) {
                     HStack {
                         
-                        DateView(date: dateComponentes)
+                        DateView(viewModel.actualDate)
                         
                         Divider()
                         
                         VStack(alignment: .leading) {
-                            if let client = client {
+                            if let client = viewModel.client {
                                 Text(client.completeName ?? "")
                                 Text("Celular: \(client.cellphone ?? "")")
                             } else {
@@ -86,44 +43,46 @@ struct DashBoardView: View {
                             }
                         }
                         .onTapGesture {
-                            if client != nil {
+                            if viewModel.client != nil {
                                 viewModel.showPhoneAlert.toggle()
                             }
                         }
-                        .alert(isPresented: $viewModel.showPhoneAlert, content: {
-                            return Alert(title: Text("Llamada"), message: Text("Esta seguro que quiere llamar a \(client!.completeName!)"), primaryButton: .default(Text("Si"), action: { Phone.call(client!.cellphone!) }), secondaryButton: .cancel(Text("No")))
-                        })
+                        .alert(isPresented: $viewModel.showPhoneAlert) {
+                            Alert(title: Text("Llamada"), message: Text("Esta seguro que quiere llamar a \(viewModel.client!.completeName!)"), primaryButton: .default(Text("Si"), action: { Phone.call(viewModel.client!.cellphone!) }), secondaryButton: .cancel(Text("No")))
+                        }
                     }
                 }
                 .gesture(
                     DragGesture(minimumDistance: 0, coordinateSpace: .local)
                         .onEnded { value in
                             if value.translation.width < 0 {
-                                self.actualDate = self.actualDate.addingTimeInterval(24*60*60)
+                                viewModel.nextDay()
+                                viewModel.getClient()
                             }
 
                             if value.translation.width > 0 {
-                                self.actualDate = self.actualDate.addingTimeInterval(-24*60*60)
+                                viewModel.previousDay()
+                                viewModel.getClient()
                             }
                         }
                 )
                 
                 Section(header: Text("Ocupación")) {
+                    let (fromDate, toDate) = viewModel.getOcupationDate()
                     HStack {
                         Spacer()
                         
-                        if client == nil {
+                        if viewModel.client == nil {
                             Text("Disponible")
                                 .bold()
                                 .foregroundColor(.green)
                         } else {
                             HStack {
-                                DateView(date: dateComponentes)
+                                DateTimeView(fromDate)
                                 
                                 Spacer()
-                                    .frame(width: 100)
                                 
-                                DateView(date: dateComponentes)
+                                DateTimeView(toDate)
                             }
                         }
                         
@@ -131,15 +90,15 @@ struct DashBoardView: View {
                     }
                 }
                 
-                if client != nil {
+                if viewModel.client != nil {
                     Section(header: Text("Entrega de Vehículo")) {
                         HStack {
                             Spacer()
                             
                             HStack(spacing: 25) {
-                                DateView(date: dateComponentes)
+                                DateView(viewModel.actualDate)
                                 
-                                DateView(date: dateComponentes)
+                                DateView(viewModel.actualDate)
                             }
                             
                             Spacer()

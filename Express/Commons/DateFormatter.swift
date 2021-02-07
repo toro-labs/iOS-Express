@@ -25,8 +25,8 @@ final class DateUtil {
     
     // MARK: Setup
     
-    func getDateComponents(_ date: Date) -> [String] {
-        self.formatter.dateFormat = "EEEE, d, MMMM"
+    func getDateComponents(_ date: Date, formatter: String = "EEEE, d, MMMM") -> [String] {
+        self.formatter.dateFormat = formatter
         return self.formatter.string(from: date).split(separator: ",").map { String($0) }
     }
     

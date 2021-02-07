@@ -29,6 +29,9 @@
 		F8D6B23025A7ED6100902460 /* IDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D6B22F25A7ED6100902460 /* IDView.swift */; };
 		F8D6B23625A7EE2700902460 /* RentScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D6B23525A7EE2700902460 /* RentScheduleViewModel.swift */; };
 		F8D6B23925A7F27100902460 /* DocumentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D6B23825A7F27100902460 /* DocumentViewModel.swift */; };
+		F8FD798425D0522A004405C1 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FD798325D0522A004405C1 /* Constant.swift */; };
+		F8FD798725D06643004405C1 /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FD798625D06643004405C1 /* DateView.swift */; };
+		F8FD798A25D06682004405C1 /* DateTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FD798925D06682004405C1 /* DateTimeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +59,9 @@
 		F8D6B22F25A7ED6100902460 /* IDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDView.swift; sourceTree = "<group>"; };
 		F8D6B23525A7EE2700902460 /* RentScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentScheduleViewModel.swift; sourceTree = "<group>"; };
 		F8D6B23825A7F27100902460 /* DocumentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewModel.swift; sourceTree = "<group>"; };
+		F8FD798325D0522A004405C1 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		F8FD798625D06643004405C1 /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
+		F8FD798925D06682004405C1 /* DateTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +81,7 @@
 				F8D3BAF525BCFE980000859D /* CarModel.swift */,
 				F857FE3525BCF2CD008233BF /* DateFormatter.swift */,
 				F8AB5F2B25CF351200B6EEC8 /* Phone.swift */,
+				F8FD798325D0522A004405C1 /* Constant.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -178,6 +185,8 @@
 			isa = PBXGroup;
 			children = (
 				F8D3BAF125BCFCC30000859D /* EnvironmentKey.swift */,
+				F8FD798625D06643004405C1 /* DateView.swift */,
+				F8FD798925D06682004405C1 /* DateTimeView.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -285,6 +294,7 @@
 				F8D3BAF225BCFCC30000859D /* EnvironmentKey.swift in Sources */,
 				F8A31945259D2CE300764AEB /* Persistence.swift in Sources */,
 				F86CEDDE259D47DF00CEC55C /* MainView.swift in Sources */,
+				F8FD798A25D06682004405C1 /* DateTimeView.swift in Sources */,
 				F8A3193E259D2CE100764AEB /* ContentView.swift in Sources */,
 				F8D6B22D25A7ED3500902460 /* UIExtension.swift in Sources */,
 				F858BDDA25BA680C00260765 /* PersistanceRepository.swift in Sources */,
@@ -294,6 +304,8 @@
 				F8AB5F2F25CF412D00B6EEC8 /* DashboardViewModel.swift in Sources */,
 				F8A31953259D2DF600764AEB /* DashBoardView.swift in Sources */,
 				F858BDDD25BA692F00260765 /* CoreDataRepository.swift in Sources */,
+				F8FD798725D06643004405C1 /* DateView.swift in Sources */,
+				F8FD798425D0522A004405C1 /* Constant.swift in Sources */,
 				F8A31948259D2CE300764AEB /* Express.xcdatamodeld in Sources */,
 				F8D3BAF625BCFE980000859D /* CarModel.swift in Sources */,
 				F8D6B23025A7ED6100902460 /* IDView.swift in Sources */,
