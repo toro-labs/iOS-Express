@@ -27,7 +27,7 @@ struct DateView: View {
     // MARK: SwiftUI Container
     
     var body: some View {
-        VStack {
+        VStack(alignment: .center) {
             Text(weekName)
                 .font(.callout)
                 .foregroundColor(.red)
@@ -37,7 +37,6 @@ struct DateView: View {
             Text(month)
                 .font(.caption)
         }
-        .padding(.trailing, 10)
     }
     
     // MARK: Initializer

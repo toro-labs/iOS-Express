@@ -10,8 +10,7 @@ import Foundation
 
 struct ClientRequest {
     let model: String
-    let fromDate: Date?
-    let toDate: Date?
+    let date: Date?
 }
 
 class DashboardViewModel: ObservableObject {
@@ -34,7 +33,7 @@ class DashboardViewModel: ObservableObject {
     // MARK: Life Cycle
     
     init(repository: PersistanceRepository) { // Aquí sería bueno pensar en un DI Framework
-        self.actualDate = Date()
+        self.actualDate = Date().localDate()
         self.respository = repository
         self.selectedCar = CarModel.honda2010
         self.showPhoneAlert = false
@@ -46,13 +45,21 @@ class DashboardViewModel: ObservableObject {
     
     // MARK: Setup
     
+    func useCache() -> Bool {
+        guard let fromDate = self.rent?.fromDate, let toDate = self.rent?.toDate else { return false }
+        
+        return (fromDate ... toDate).contains(self.actualDate)
+    }
+    
     func getClient() {
-        let request = ClientRequest(model: self.selectedCar.rawValue, fromDate: DateUtil.shared.getStartDay(self.actualDate), toDate: DateUtil.shared.getEndDay(self.actualDate))
-        do {
-            let rent = try self.respository.get(type: RentModel.self, fetchArgs: request)
-            self.rent = rent.first
-        } catch {
-            self.rent = nil
+        if !useCache() {
+            let request = ClientRequest(model: self.selectedCar.rawValue, date: self.actualDate)
+            do {
+                let rent = try self.respository.get(type: RentModel.self, fetchArgs: request)
+                self.rent = rent.first
+            } catch {
+                self.rent = nil
+            }
         }
     }
     

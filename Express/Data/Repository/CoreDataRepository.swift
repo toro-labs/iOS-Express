@@ -22,13 +22,15 @@ final class CoreDataRepository {
 
 extension CoreDataRepository: PersistanceRepository {
     func get<T: NSManagedObject>(type: T.Type, fetchArgs: ClientRequest) throws -> [T] {
-        guard let fromDate = fetchArgs.fromDate, let toDate = fetchArgs.toDate else {
+        guard let date = fetchArgs.date else {
             throw CoreDataError.invalidRequest
         }
         
         let fetchRequest = NSFetchRequest<T>(entityName: "\(type)")
-        
-        fetchRequest.predicate = NSPredicate(format: "car == %@ && fromDate > %@ && fromDate < %@", fetchArgs.model, fromDate as CVarArg, toDate as CVarArg)
+
+        let carPredicate = NSPredicate(format: "car = %@", fetchArgs.model)
+        let datePredicate = NSPredicate(format: "%@ >= fromDate && %@ <= toDate", date as NSDate, date as NSDate)
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [carPredicate, datePredicate])
         
         do {
             return try context.fetch(fetchRequest)

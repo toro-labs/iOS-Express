@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F80C0D0725DA02A400659EF0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80C0D0625DA02A400659EF0 /* Extensions.swift */; };
 		F857FE3625BCF2CD008233BF /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F857FE3525BCF2CD008233BF /* DateFormatter.swift */; };
 		F858BDDA25BA680C00260765 /* PersistanceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858BDD925BA680C00260765 /* PersistanceRepository.swift */; };
 		F858BDDD25BA692F00260765 /* CoreDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858BDDC25BA692F00260765 /* CoreDataRepository.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F80C0D0625DA02A400659EF0 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F857FE3525BCF2CD008233BF /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		F858BDD925BA680C00260765 /* PersistanceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceRepository.swift; sourceTree = "<group>"; };
 		F858BDDC25BA692F00260765 /* CoreDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRepository.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				F857FE3525BCF2CD008233BF /* DateFormatter.swift */,
 				F8AB5F2B25CF351200B6EEC8 /* Phone.swift */,
 				F8FD798325D0522A004405C1 /* Constant.swift */,
+				F80C0D0625DA02A400659EF0 /* Extensions.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				F8FD798425D0522A004405C1 /* Constant.swift in Sources */,
 				F8A31948259D2CE300764AEB /* Express.xcdatamodeld in Sources */,
 				F8D3BAF625BCFE980000859D /* CarModel.swift in Sources */,
+				F80C0D0725DA02A400659EF0 /* Extensions.swift in Sources */,
 				F8D6B23025A7ED6100902460 /* IDView.swift in Sources */,
 				F86CEDE525A1578C00CEC55C /* RentHistoryView.swift in Sources */,
 				F8AB5F2C25CF351200B6EEC8 /* Phone.swift in Sources */,

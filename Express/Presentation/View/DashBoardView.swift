@@ -18,6 +18,8 @@ struct DashBoardView: View {
     var body: some View {
         NavigationView {
             Form {
+                let (fromDate, toDate) = viewModel.getOcupationDate()
+                
                 Section {
                     Picker(selection: $viewModel.selectedCar, label: Text("Carro"), content: {
                         Text("Honda CRV 2000").tag(CarModel.honda2000)
@@ -30,6 +32,7 @@ struct DashBoardView: View {
                 Section(header: Text("Hoy")) {
                     HStack {
                         DateView(viewModel.actualDate)
+                            .padding(.trailing, 10)
                         
                         Divider()
                         
@@ -67,7 +70,6 @@ struct DashBoardView: View {
                 )
                 
                 Section(header: Text("Ocupación")) {
-                    let (fromDate, toDate) = viewModel.getOcupationDate()
                     HStack {
                         Spacer()
                         
@@ -76,12 +78,14 @@ struct DashBoardView: View {
                                 .bold()
                                 .foregroundColor(.green)
                         } else {
-                            HStack {
-                                DateTimeView(fromDate)
-                                
-                                Spacer()
-                                
-                                DateTimeView(toDate)
+                            HStack(alignment: .center) {
+                                DateView(fromDate)
+                                    .frame(minWidth: 0, maxWidth: 100, alignment: .center)
+
+                                Divider()
+
+                                DateView(toDate)
+                                    .frame(minWidth: 0, maxWidth: 100, alignment: .center)
                             }
                         }
                         
@@ -94,11 +98,7 @@ struct DashBoardView: View {
                         HStack {
                             Spacer()
                             
-                            HStack(spacing: 25) {
-                                DateView(viewModel.actualDate)
-                                
-                                DateView(viewModel.actualDate)
-                            }
+                            DateTimeView(toDate)
                             
                             Spacer()
                         }
