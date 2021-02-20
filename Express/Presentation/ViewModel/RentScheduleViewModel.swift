@@ -109,6 +109,7 @@ class RentScheduleViewModel: ObservableObject {
         rent.fromDate = self.from
         rent.payment = self.createPayment(context: context)
         rent.car = self.selectedCar.id
+        rent.rented = true
         rent.reserved = self.booked
         rent.toDate = self.to
         
@@ -117,6 +118,16 @@ class RentScheduleViewModel: ObservableObject {
             self.reset()
         } catch {
             print(error.localizedDescription)
+        }
+    }
+    
+    func finishRent(context: NSManagedObjectContext,for rentedCar: RentModel) {
+        rentedCar.rented = false
+        rentedCar.car = nil
+        do {
+            try context.save()
+        } catch {
+            print("Error ocurred")
         }
     }
     

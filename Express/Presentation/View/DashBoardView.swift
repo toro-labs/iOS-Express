@@ -12,6 +12,30 @@ struct DashBoardView: View {
     
     @Environment(\.availableCars) var cars
     @ObservedObject private var viewModel = DashboardViewModel()
+    @Environment(\.managedObjectContext) var moc
+    
+    @ObservedObject var viewModel = RentScheduleViewModel()
+    
+    @FetchRequest(
+        entity: RentModel.entity(),
+        sortDescriptors: [],
+        predicate: NSPredicate(format: "fromDate > %@ && fromDate < %@", DateUtil.shared.startDay! as CVarArg, DateUtil.shared.endDay! as CVarArg)) var rents: FetchedResults<RentModel>
+    @State private var selectedCar = CarModel.honda2010
+    
+    // MARK: Properties
+    
+    private var filterRent: RentModel? {
+        return rents
+            .filter {
+                $0.car == selectedCar.rawValue
+            }
+            .first
+    }
+    
+    @State private var actualDate = Date()
+    private var dateComponentes: [String] {
+        return DateUtil.shared.getDateComponents(actualDate)
+    }
     
     // MARK: SwiftUI Container
     
@@ -72,8 +96,12 @@ struct DashBoardView: View {
                 Section(header: Text("Ocupación")) {
                     HStack {
                         Spacer()
+<<<<<<< HEAD
                         
                         if viewModel.client == nil {
+=======
+                        if filterRent == nil {
+>>>>>>> e3cec57 (Finish Rent Manually)
                             Text("Disponible")
                                 .bold()
                                 .foregroundColor(.green)
@@ -101,6 +129,23 @@ struct DashBoardView: View {
                             DateTimeView(toDate)
                             
                             Spacer()
+                        }
+                    }
+                }
+                
+                if let rented = filterRent?.rented {
+                    if rented == true {
+                        Section(header: Text("Alquiler en Curso")){
+                            HStack{
+                                Spacer()
+                                
+                                Button("Acabar Alquiler", action: {
+                                    viewModel.finishRent(context: moc, for: filterRent!)
+                                })
+                                .foregroundColor(.red)
+                                
+                                Spacer()
+                            }
                         }
                     }
                 }
