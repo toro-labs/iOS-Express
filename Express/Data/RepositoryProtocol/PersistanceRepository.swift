@@ -11,4 +11,5 @@ import Foundation
 protocol PersistanceRepository {
     func save()
     func get<T: NSManagedObject>(type: T.Type, fetchArgs: ClientRequest) throws -> [T]
+    func updateRent(for rent: RentModel)
 }

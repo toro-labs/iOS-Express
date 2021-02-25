@@ -106,11 +106,12 @@ class RentScheduleViewModel: ObservableObject {
         let rent = RentModel(context: context)
         
         rent.client = self.createClient(context: context, idDocument: idDocument)
-        rent.fromDate = self.from
+        rent.fromDate = Int64(self.from.timeIntervalSince1970)
         rent.payment = self.createPayment(context: context)
         rent.car = self.selectedCar.id
+        rent.rented = true
         rent.reserved = self.booked
-        rent.toDate = self.to
+        rent.toDate = Int64(self.to.timeIntervalSince1970)
         
         do {
             try context.save()
