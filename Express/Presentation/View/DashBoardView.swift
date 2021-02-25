@@ -12,6 +12,7 @@ struct DashBoardView: View {
     
     @Environment(\.availableCars) var cars
     @ObservedObject private var viewModel = DashboardViewModel()
+    @State var showAlert = false
     
     // MARK: SwiftUI Container
     
@@ -104,6 +105,29 @@ struct DashBoardView: View {
                         }
                     }
                 }
+                
+                if viewModel.isRented() {
+                    Section(header: Text("Alquiler en Curso")){
+                        HStack{
+                            Spacer()
+                            
+                            Button(action: {
+                                self.showAlert = true
+                            }) {
+                                Text("Acabar Alquiler")
+                            }
+                            .alert(isPresented: $showAlert) {
+                                Alert(title: Text("Finalizar Alquiler"), message: Text("Desea finalizar el alquiler?"), primaryButton: .default(Text("Si"), action: {
+                                    viewModel.finishRent()
+                                }), secondaryButton: .default(Text("No")))
+                            }
+                            .foregroundColor(.red)
+                            
+                            Spacer()
+                        }
+                    }
+                }
+                
             }
             .navigationTitle("Express Rent a Car")
         }

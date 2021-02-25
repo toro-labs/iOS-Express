@@ -29,8 +29,9 @@ extension CoreDataRepository: PersistanceRepository {
         let fetchRequest = NSFetchRequest<T>(entityName: "\(type)")
 
         let carPredicate = NSPredicate(format: "car = %@", fetchArgs.model)
-        let datePredicate = NSPredicate(format: "%@ >= fromDate && %@ <= toDate", date as NSDate, date as NSDate)
-        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [carPredicate, datePredicate])
+        let datePredicate = NSPredicate(format: "%d >= fromDate && %d <= toDate", date, date)
+        let rentPredicate = NSPredicate(format: "rented = %@", NSNumber(value: true))
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [carPredicate, datePredicate, rentPredicate])
         
         do {
             return try context.fetch(fetchRequest)
@@ -40,4 +41,15 @@ extension CoreDataRepository: PersistanceRepository {
     }
     
     func save() {}
+    
+    
+    func updateRent(for rent: RentModel) {
+        rent.rented = false
+        do {
+            try context.save()
+        } catch {
+            print("Error ocurred")
+        }
+    }
+    
 }

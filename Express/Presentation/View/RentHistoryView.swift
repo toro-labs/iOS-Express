@@ -30,9 +30,10 @@ struct RentHistoryView: View {
         return rents
             .filter { $0.car == selectedCar.rawValue }
             .compactMap {
-            guard let client = $0.client, let from = $0.fromDate, let to = $0.toDate, let payment = $0.payment?.money else { return nil }
-    
-            return Client(name: client.completeName ?? "", from: DateUtil.shared.getStringDate(from), to: DateUtil.shared.getStringDate(to), daysNumber: DateUtil.shared.getNumberOfdays(from, to), amount: Int(truncating: payment))
+            guard let client = $0.client, let payment = $0.payment?.money else { return nil }
+                let from = $0.fromDate
+                let to = $0.toDate
+                return Client(name: client.completeName ?? "", from: DateUtil.shared.getStringDate(Date(timeIntervalSince1970: TimeInterval(from))), to: DateUtil.shared.getStringDate(Date(timeIntervalSince1970: TimeInterval(to))), daysNumber: DateUtil.shared.getNumberOfdays(Date(timeIntervalSince1970: TimeInterval(from)), Date(timeIntervalSince1970: TimeInterval(to))), amount: Int(truncating: payment))
         }
     }
     

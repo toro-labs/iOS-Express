@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Car" representedClassName=".Car" syncable="YES" codeGenerationType="class">
         <attribute name="model" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -27,9 +27,10 @@
     </entity>
     <entity name="RentModel" representedClassName=".RentModel" syncable="YES" codeGenerationType="class">
         <attribute name="car" optional="YES" attributeType="String"/>
-        <attribute name="fromDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="fromDate" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="rented" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="reserved" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="toDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="toDate" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="client" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClientModel" inverseName="rentRelationship" inverseEntity="ClientModel"/>
         <relationship name="payment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Payment" inverseName="rentRelationship" inverseEntity="Payment"/>
         <relationship name="rentedCar" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Car" inverseName="rentRelationship" inverseEntity="Car"/>
@@ -39,6 +40,6 @@
         <element name="ClientModel" positionX="236.2706298828125" positionY="164.2169799804688" width="128" height="104"/>
         <element name="IDDocument" positionX="-36" positionY="45" width="128" height="104"/>
         <element name="Payment" positionX="126" positionY="162" width="128" height="74"/>
-        <element name="RentModel" positionX="117" positionY="144" width="128" height="134"/>
+        <element name="RentModel" positionX="117" positionY="144" width="128" height="149"/>
     </elements>
 </model>

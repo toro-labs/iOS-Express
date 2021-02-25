@@ -10,7 +10,7 @@ import Foundation
 
 struct ClientRequest {
     let model: String
-    let date: Date?
+    let date: Int64?
 }
 
 class DashboardViewModel: ObservableObject {
@@ -37,6 +37,7 @@ class DashboardViewModel: ObservableObject {
         self.respository = repository
         self.selectedCar = CarModel.honda2010
         self.showPhoneAlert = false
+        self.getClient()
     }
     
     convenience init() {
@@ -48,14 +49,15 @@ class DashboardViewModel: ObservableObject {
     func useCache() -> Bool {
         guard let fromDate = self.rent?.fromDate, let toDate = self.rent?.toDate else { return false }
         
-        return (fromDate ... toDate).contains(self.actualDate)
+        return (Date(timeIntervalSince1970: TimeInterval(fromDate)) ... Date(timeIntervalSince1970: TimeInterval(toDate))).contains(self.actualDate)
     }
     
     func getClient() {
         if !useCache() {
-            let request = ClientRequest(model: self.selectedCar.rawValue, date: self.actualDate)
+            let request = ClientRequest(model: self.selectedCar.rawValue, date: Int64(self.actualDate.timeIntervalSince1970))
             do {
                 let rent = try self.respository.get(type: RentModel.self, fetchArgs: request)
+                
                 self.rent = rent.first
             } catch {
                 self.rent = nil
@@ -65,7 +67,7 @@ class DashboardViewModel: ObservableObject {
     
     func getOcupationDate() -> (Date, Date) {
         guard let rent = self.rent else { return (self.actualDate, self.actualDate) }
-        return (rent.fromDate!, rent.toDate!)
+        return (Date(timeIntervalSince1970: TimeInterval(rent.fromDate)), Date(timeIntervalSince1970: TimeInterval(rent.toDate)))
     }
     
     func nextDay() {
@@ -74,5 +76,20 @@ class DashboardViewModel: ObservableObject {
     
     func previousDay() {
         self.actualDate = self.actualDate.addingTimeInterval(-Constant.daySeconds)
+    }
+    
+    func isRented() -> Bool {
+        guard let rent = self.rent else {
+            return false
+        }
+        return rent.rented
+    }
+    
+    func finishRent() {
+        if let rent = self.rent {
+            self.respository.updateRent(for: rent)
+            self.rent = nil
+            self.actualDate = Date().localDate()
+        }
     }
 }
