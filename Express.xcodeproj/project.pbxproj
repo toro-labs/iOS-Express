@@ -11,6 +11,8 @@
 		F857FE3625BCF2CD008233BF /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F857FE3525BCF2CD008233BF /* DateFormatter.swift */; };
 		F858BDDA25BA680C00260765 /* PersistanceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858BDD925BA680C00260765 /* PersistanceRepository.swift */; };
 		F858BDDD25BA692F00260765 /* CoreDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858BDDC25BA692F00260765 /* CoreDataRepository.swift */; };
+		F85DC2B525FE9EF100DCCE83 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85DC2B425FE9EF100DCCE83 /* StatisticsView.swift */; };
+		F85DC2B925FEA30900DCCE83 /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85DC2B825FEA30900DCCE83 /* LineChart.swift */; };
 		F86CEDDE259D47DF00CEC55C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86CEDDD259D47DF00CEC55C /* MainView.swift */; };
 		F86CEDE2259D4D8500CEC55C /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86CEDE1259D4D8500CEC55C /* ScheduleView.swift */; };
 		F86CEDE525A1578C00CEC55C /* RentHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86CEDE425A1578C00CEC55C /* RentHistoryView.swift */; };
@@ -40,6 +42,8 @@
 		F857FE3525BCF2CD008233BF /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		F858BDD925BA680C00260765 /* PersistanceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceRepository.swift; sourceTree = "<group>"; };
 		F858BDDC25BA692F00260765 /* CoreDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRepository.swift; sourceTree = "<group>"; };
+		F85DC2B425FE9EF100DCCE83 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
+		F85DC2B825FEA30900DCCE83 /* LineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
 		F86CEDDD259D47DF00CEC55C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F86CEDE1259D4D8500CEC55C /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		F86CEDE425A1578C00CEC55C /* RentHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentHistoryView.swift; sourceTree = "<group>"; };
@@ -122,6 +126,14 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		F85DC2B725FEA2EA00DCCE83 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				F85DC2B825FEA30900DCCE83 /* LineChart.swift */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
 		F86CEDE825A28A4400CEC55C /* SUI-UIKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,12 +186,14 @@
 		F8A31950259D2D7300764AEB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F85DC2B725FEA2EA00DCCE83 /* Charts */,
 				F86CEDE825A28A4400CEC55C /* SUI-UIKit */,
 				F8A31952259D2DF600764AEB /* DashBoardView.swift */,
 				F86CEDDD259D47DF00CEC55C /* MainView.swift */,
 				F8D6B23225A7EDB100902460 /* ScheduleRent */,
 				F86CEDE425A1578C00CEC55C /* RentHistoryView.swift */,
 				F8D6B22C25A7ED3500902460 /* UIExtension.swift */,
+				F85DC2B425FE9EF100DCCE83 /* StatisticsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -230,6 +244,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F8A3194C259D2CE300764AEB /* Build configuration list for PBXNativeTarget "Express" */;
 			buildPhases = (
+				F81E2DA126E9913700351E12 /* Swiftlint */,
 				F8A31934259D2CE100764AEB /* Sources */,
 				F8A31935259D2CE100764AEB /* Frameworks */,
 				F8A31936259D2CE100764AEB /* Resources */,
@@ -287,12 +302,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		F81E2DA126E9913700351E12 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F8A31934259D2CE100764AEB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				F857FE3625BCF2CD008233BF /* DateFormatter.swift in Sources */,
+				F85DC2B525FE9EF100DCCE83 /* StatisticsView.swift in Sources */,
 				F8D6B23625A7EE2700902460 /* RentScheduleViewModel.swift in Sources */,
 				F8D3BAF225BCFCC30000859D /* EnvironmentKey.swift in Sources */,
 				F8A31945259D2CE300764AEB /* Persistence.swift in Sources */,
@@ -309,6 +346,7 @@
 				F858BDDD25BA692F00260765 /* CoreDataRepository.swift in Sources */,
 				F8FD798725D06643004405C1 /* DateView.swift in Sources */,
 				F8FD798425D0522A004405C1 /* Constant.swift in Sources */,
+				F85DC2B925FEA30900DCCE83 /* LineChart.swift in Sources */,
 				F8A31948259D2CE300764AEB /* Express.xcdatamodeld in Sources */,
 				F8D3BAF625BCFE980000859D /* CarModel.swift in Sources */,
 				F80C0D0725DA02A400659EF0 /* Extensions.swift in Sources */,

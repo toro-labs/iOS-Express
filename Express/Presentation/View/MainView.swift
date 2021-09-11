@@ -24,6 +24,12 @@ struct MainView: View {
                     Text("Historial")
                 }
             
+            StatisticsView()
+                .tabItem {
+                    Image(systemName: "chart.bar.xaxis")
+                    Text("Estadisticas")
+                }
+            
             ScheduleView()
                 .tabItem {
                     Image(systemName: "calendar.badge.plus")
