@@ -33,7 +33,7 @@ struct MainView: View {
             ScheduleView()
                 .tabItem {
                     Image(systemName: "calendar.badge.plus")
-                    Text("Agendar")
+                    Text("Agendar3")
                 }
         }
     }
