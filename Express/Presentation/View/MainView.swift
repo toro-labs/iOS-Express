@@ -27,13 +27,13 @@ struct MainView: View {
             StatisticsView()
                 .tabItem {
                     Image(systemName: "chart.bar.xaxis")
-                    Text("Estadisticas3")
+                    Text("Estadisticas")
                 }
             
             ScheduleView()
                 .tabItem {
                     Image(systemName: "calendar.badge.plus")
-                    Text("Agendar3")
+                    Text("Agendar")
                 }
         }
     }
