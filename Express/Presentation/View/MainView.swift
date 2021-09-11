@@ -27,7 +27,7 @@ struct MainView: View {
             StatisticsView()
                 .tabItem {
                     Image(systemName: "chart.bar.xaxis")
-                    Text("Estadisticas")
+                    Text("Estadisticas3")
                 }
             
             ScheduleView()
