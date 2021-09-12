@@ -1,0 +1,26 @@
+disabled_rules: # rule identifiers to exclude from running
+  - colon
+  - comma
+  - trailing_whitespace
+  - mark
+  - nesting
+  - todo
+
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Pods
+  - Build
+  - .build
+
+weak_delegate: error
+force_cast: warning
+force_try: warning # implicitly
+identifier_name:
+  min_length: 2
+  max_length: 
+     warning: 40 # warning
+     error: 50 # error
+  excluded:
+    - id
+  
+reporter: "xcode"
+#Check rules on https://realm.github.io/SwiftLint/rule-directory.html
